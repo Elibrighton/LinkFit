@@ -5,13 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LinkFit.Models;
+//using Microsoft.Extensions.Options;
+//using LinkFit.Services;
 
 namespace LinkFit.Controllers
 {
     public class HomeController : Controller
     {
+        //private readonly AuthMessageSenderOptions _optionsAccessor;
+
+        //public HomeController(IOptions<AuthMessageSenderOptions> optionsAccessor)
+        //{
+        //    _optionsAccessor = optionsAccessor.Value;
+        //}
+
         public IActionResult Index()
         {
+            //var sendGridKey = _optionsAccessor.SendGridKey;
             return View();
         }
 
