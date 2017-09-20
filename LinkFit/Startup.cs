@@ -75,6 +75,12 @@ namespace LinkFit
             // Register the IConfiguration instance which MyOptions binds against.
             services.Configure<AuthMessageSenderOptions>(Configuration);
 
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["FacebookAppId"];
+                facebookOptions.AppSecret = Configuration["FacebookAppSecret"];
+            });
+
             services.AddMvc();
         }
 

@@ -9,5 +9,7 @@ namespace LinkFit.Services
     {
         public string SendGridUser { get; set; }
         public string SendGridKey { get; set; }
+        public string FacebookAppId { get; set; }
+        public string FacebookAppSecret { get; set; }
     }
 }
