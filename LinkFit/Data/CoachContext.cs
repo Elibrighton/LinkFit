@@ -22,6 +22,10 @@ namespace LinkFit.Data
             modelBuilder.Entity<Athlete>().ToTable("Athlete");
             modelBuilder.Entity<ProgramEnrollment>().ToTable("ProgramEnrollment");
             modelBuilder.Entity<TrainingProgram>().ToTable("TrainingProgram");
+
+
+            modelBuilder.Entity<ProgramEnrollment>()
+                .HasKey(c => new { c.AthleteID, c.TrainingProgramID });
         }
     }
 }

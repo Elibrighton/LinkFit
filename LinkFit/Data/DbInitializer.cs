@@ -20,14 +20,14 @@ namespace LinkFit.Data
 
             var athletes = new Athlete[]
             {
-            new Athlete{FirstName="Rebecca",LastName="Jenner",EnrollmentDate=DateTime.Parse("2005-09-01")},
-            new Athlete{FirstName="Kody",LastName="Barrett",EnrollmentDate=DateTime.Parse("2002-09-01")},
-            new Athlete{FirstName="Ian",LastName="Hurley",EnrollmentDate=DateTime.Parse("2003-09-01")},
-            new Athlete{FirstName="Sherry",LastName="Ey",EnrollmentDate=DateTime.Parse("2002-09-01")},
-            new Athlete{FirstName="Kephren",LastName="Izzard",EnrollmentDate=DateTime.Parse("2002-09-01")},
-            new Athlete{FirstName="Grant",LastName="Little",EnrollmentDate=DateTime.Parse("2001-09-01")},
-            new Athlete{FirstName="Leslie",LastName="Sproule",EnrollmentDate=DateTime.Parse("2003-09-01")},
-            new Athlete{FirstName="Troy",LastName="Austin",EnrollmentDate=DateTime.Parse("2005-09-01")}
+            new Athlete{FirstName="Rebecca",Surname="Jenner",EnrollmentDate=DateTime.Parse("2005-09-01")},
+            new Athlete{FirstName="Kody",Surname="Barrett",EnrollmentDate=DateTime.Parse("2002-09-01")},
+            new Athlete{FirstName="Ian",Surname="Hurley",EnrollmentDate=DateTime.Parse("2003-09-01")},
+            new Athlete{FirstName="Sherry",Surname="Ey",EnrollmentDate=DateTime.Parse("2002-09-01")},
+            new Athlete{FirstName="Kephren",Surname="Izzard",EnrollmentDate=DateTime.Parse("2002-09-01")},
+            new Athlete{FirstName="Grant",Surname="Little",EnrollmentDate=DateTime.Parse("2001-09-01")},
+            new Athlete{FirstName="Leslie",Surname="Sproule",EnrollmentDate=DateTime.Parse("2003-09-01")},
+            new Athlete{FirstName="Troy",Surname="Austin",EnrollmentDate=DateTime.Parse("2005-09-01")}
             };
             foreach (Athlete a in athletes)
             {

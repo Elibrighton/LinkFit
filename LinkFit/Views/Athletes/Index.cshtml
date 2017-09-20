@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<LinkFit.Models.Athlete>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Athletes";
 }
-<h2>Index</h2>
+<h2>Athletes</h2>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -10,7 +10,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.Surname)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.EnrollmentDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+                @Html.DisplayNameFor(model => model.ProgramEnrollments)
             </th>
             <th></th>
         </tr>
@@ -29,7 +29,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.Surname)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
@@ -38,7 +38,10 @@
                     @Html.DisplayFor(modelItem => item.EnrollmentDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
+                    @foreach (var programEnrollment in item.ProgramEnrollments)
+                    {
+                        @Html.DisplayFor(modelItem => programEnrollment.TrainingProgram.Title) <br />
+                    }
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

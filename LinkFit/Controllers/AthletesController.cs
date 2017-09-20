@@ -22,7 +22,12 @@ namespace LinkFit.Controllers
         // GET: Athletes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Athletes.ToListAsync());
+            var viewData = await _context.Athletes
+                .Include(a => a.ProgramEnrollments)
+                    .ThenInclude(a => a.TrainingProgram)
+                .AsNoTracking().ToListAsync();
+
+            return View(viewData);
         }
 
         // GET: Athletes/Details/5
@@ -58,7 +63,7 @@ namespace LinkFit.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LastName,FirstName,EnrollmentDate,Gender")] Athlete athlete)
+        public async Task<IActionResult> Create([Bind("Surname,FirstName,EnrollmentDate,Gender,EntrantCategory,DateOfBirth")] Athlete athlete)
         {
 
             try
@@ -113,7 +118,7 @@ namespace LinkFit.Controllers
             if (await TryUpdateModelAsync<Athlete>(
                 athleteToUpdate,
                 "",
-                a => a.FirstName, a => a.LastName, a => a.EnrollmentDate, a => a.Gender))
+                a => a.FirstName, a => a.Surname, a => a.EnrollmentDate))
             {
                 try
                 {
