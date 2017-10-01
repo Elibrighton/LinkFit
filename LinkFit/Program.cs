@@ -16,6 +16,15 @@ namespace LinkFit
     {
         public static void Main(string[] args)
         {
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddUserSecrets<Program>()
+                .AddEnvironmentVariables()
+                .Build();
+
+            var seedUserPw = Configuration["SeedUserPW"];
+
             var host = BuildWebHost(args);
 
             using (var scope = host.Services.CreateScope())
@@ -23,8 +32,7 @@ namespace LinkFit
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<CoachContext>();
-                    DbInitializer.Initialize(context);
+                    DbInitializer.Initialize(services, seedUserPw).Wait();
                 }
                 catch (Exception ex)
                 {
@@ -35,6 +43,8 @@ namespace LinkFit
 
             host.Run();
         }
+
+        public static IConfigurationRoot Configuration { get; set; }
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)

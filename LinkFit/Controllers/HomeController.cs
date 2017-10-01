@@ -5,29 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LinkFit.Models;
+using Microsoft.AspNetCore.Authorization;
 //using Microsoft.Extensions.Options;
 //using LinkFit.Services;
 
 namespace LinkFit.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
-        //private readonly AuthMessageSenderOptions _optionsAccessor;
-
-        //public HomeController(IOptions<AuthMessageSenderOptions> optionsAccessor)
-        //{
-        //    _optionsAccessor = optionsAccessor.Value;
-        //}
-
         public IActionResult Index()
         {
-            //var sendGridKey = _optionsAccessor.SendGridKey;
             return View();
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Coaches";
 
             return View();
         }

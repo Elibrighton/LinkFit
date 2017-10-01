@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using LinkFit.Authorization;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -30,9 +32,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Athletes" asp-action="Index">Athletes</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About us</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Programs">Programs</a></li>
+                    @if (User.IsInRole(Constants.AthleteAdministratorsRole))
+                    {
+                        <li><a asp-area="" asp-controller="Athletes" asp-action="Index">Athletes</a></li>
+                    }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

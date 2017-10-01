@@ -7,16 +7,29 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LinkFit.Data;
 using LinkFit.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace LinkFit.Controllers
 {
+    [Authorize(Roles = "AthleteAdministrators")]
     public class AthletesController : Controller
     {
         private readonly CoachContext _context;
+        private readonly ApplicationDbContext _appContext;
+        private readonly IAuthorizationService _authorizationService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AthletesController(CoachContext context)
+        public AthletesController(
+            CoachContext context,
+            ApplicationDbContext appContext,
+            IAuthorizationService authorizationService,
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _appContext = appContext;
+            _userManager = userManager;
+            _authorizationService = authorizationService;
         }
 
         // GET: Athletes

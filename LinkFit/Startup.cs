@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using LinkFit.Data;
 using LinkFit.Models;
 using LinkFit.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using LinkFit.Authorization;
 
 namespace LinkFit
 {
@@ -57,7 +60,7 @@ namespace LinkFit
                 // User settings
                 options.User.RequireUniqueEmail = true;
             });
-            
+
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
@@ -68,7 +71,7 @@ namespace LinkFit
                 options.AccessDeniedPath = "/Account/AccessDenied"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
                 options.SlidingExpiration = true;
             });
-            
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
@@ -80,8 +83,20 @@ namespace LinkFit
                 facebookOptions.AppId = Configuration["FacebookAppId"];
                 facebookOptions.AppSecret = Configuration["FacebookAppSecret"];
             });
+            
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
 
             services.AddMvc();
+
+            services.AddSingleton<IAuthorizationHandler, AthleteAdministratorsAuthorizationHandler>();
+
+            services.AddSingleton<IAuthorizationHandler, AthleteManagerAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

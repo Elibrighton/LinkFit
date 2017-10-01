@@ -12,10 +12,11 @@ namespace LinkFit.Models
         public int ID { get; set; }
 
         [Required]
+        public string OwnerID { get; set; }
+        
         [StringLength(50, ErrorMessage = "Surname cannot be longer than 50 characters.")]
         public string Surname { get; set; }
-
-        [Required]
+        
         [Display(Name = "First name")]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         public string FirstName { get; set; }
@@ -33,6 +34,11 @@ namespace LinkFit.Models
                 return Surname + ", " + FirstName;
             }
         }
+
+        //[Required]
+        //[Display(Name = "Email address")]
+        //[DataType(DataType.EmailAddress)]
+        //public string EmailAddress { get; set; }
 
         //[DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]

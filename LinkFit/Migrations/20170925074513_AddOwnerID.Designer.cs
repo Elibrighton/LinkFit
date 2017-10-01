@@ -11,9 +11,10 @@ using System;
 namespace LinkFit.Migrations
 {
     [DbContext(typeof(CoachContext))]
-    partial class CoachContextModelSnapshot : ModelSnapshot
+    [Migration("20170925074513_AddOwnerID")]
+    partial class AddOwnerID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,12 +29,13 @@ namespace LinkFit.Migrations
                     b.Property<DateTime>("EnrollmentDate");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("OwnerID")
-                        .IsRequired();
+                    b.Property<string>("OwnerID");
 
                     b.Property<string>("Surname")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.HasKey("ID");
