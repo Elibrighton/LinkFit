@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LinkFit.Models;
 using Microsoft.AspNetCore.Authorization;
-//using Microsoft.Extensions.Options;
-//using LinkFit.Services;
 
 namespace LinkFit.Controllers
 {

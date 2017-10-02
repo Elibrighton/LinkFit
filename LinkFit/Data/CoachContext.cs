@@ -16,6 +16,7 @@ namespace LinkFit.Data
         public DbSet<Athlete> Athletes { get; set; }
         public DbSet<ProgramEnrollment> ProgramEnrollments { get; set; }
         public DbSet<TrainingProgram> TrainingPrograms { get; set; }
+        public DbSet<Message> Message { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
