@@ -1,11 +1,8 @@
 ﻿@model LinkFit.Models.Message
-
 @{
     ViewData["Title"] = "Create";
 }
-
 <h2>Create</h2>
-
 <h4>Message</h4>
 <hr />
 <div class="row">
@@ -34,9 +31,12 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@if (User.IsInRole(Constants.AthleteAdministratorsRole))
+{
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

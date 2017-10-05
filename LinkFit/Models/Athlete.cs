@@ -7,33 +7,12 @@ using System.Threading.Tasks;
 
 namespace LinkFit.Models
 {
-    public class Athlete
+    public class Athlete : Person
     {
-        public int ID { get; set; }
-
-        [Required]
-        public string OwnerID { get; set; }
-        
-        [StringLength(50, ErrorMessage = "Surname cannot be longer than 50 characters.")]
-        public string Surname { get; set; }
-        
-        [Display(Name = "First name")]
-        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
-        public string FirstName { get; set; }
-
         [Display(Name = "Enrollment date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         public DateTime EnrollmentDate { get; set; }
-
-        [Display(Name = "Full name")]
-        public string FullName
-        {
-            get
-            {
-                return Surname + ", " + FirstName;
-            }
-        }
 
         //[Required]
         //[Display(Name = "Email address")]

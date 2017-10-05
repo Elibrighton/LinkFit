@@ -193,7 +193,7 @@ namespace LinkFit.Controllers
 
             try
             {
-                _context.Athletes.Remove(athlete);
+                _context.People.Remove(athlete);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

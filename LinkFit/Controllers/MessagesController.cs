@@ -32,7 +32,7 @@ namespace LinkFit.Controllers
         // GET: Messages
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Message.ToListAsync());
+            return View(await _context.Messages.ToListAsync());
         }
 
         // GET: Messages/Details/5
@@ -43,7 +43,7 @@ namespace LinkFit.Controllers
                 return NotFound();
             }
 
-            var message = await _context.Message
+            var message = await _context.Messages
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (message == null)
             {
@@ -90,7 +90,7 @@ namespace LinkFit.Controllers
                 return NotFound();
             }
 
-            var message = await _context.Message.SingleOrDefaultAsync(m => m.ID == id);
+            var message = await _context.Messages.SingleOrDefaultAsync(m => m.ID == id);
             if (message == null)
             {
                 return NotFound();
@@ -141,7 +141,7 @@ namespace LinkFit.Controllers
                 return NotFound();
             }
 
-            var message = await _context.Message
+            var message = await _context.Messages
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (message == null)
             {
@@ -156,15 +156,15 @@ namespace LinkFit.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var message = await _context.Message.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Message.Remove(message);
+            var message = await _context.Messages.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Messages.Remove(message);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MessageExists(int id)
         {
-            return _context.Message.Any(e => e.ID == id);
+            return _context.Messages.Any(e => e.ID == id);
         }
 
         [AllowAnonymous]

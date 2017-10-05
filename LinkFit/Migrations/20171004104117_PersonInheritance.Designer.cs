@@ -12,9 +12,10 @@ using System;
 namespace LinkFit.Migrations
 {
     [DbContext(typeof(CoachContext))]
-    partial class CoachContextModelSnapshot : ModelSnapshot
+    [Migration("20171004104117_PersonInheritance")]
+    partial class PersonInheritance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +40,7 @@ namespace LinkFit.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Message");
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("LinkFit.Models.Person", b =>
@@ -63,7 +64,7 @@ namespace LinkFit.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Person");
+                    b.ToTable("Persons");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Person");
                 });
@@ -103,7 +104,7 @@ namespace LinkFit.Migrations
 
                     b.Property<DateTime>("EnrollmentDate");
 
-                    b.ToTable("Person");
+                    b.ToTable("Athlete");
 
                     b.HasDiscriminator().HasValue("Athlete");
                 });
@@ -114,7 +115,7 @@ namespace LinkFit.Migrations
 
                     b.Property<DateTime>("HireDate");
 
-                    b.ToTable("Person");
+                    b.ToTable("Coach");
 
                     b.HasDiscriminator().HasValue("Coach");
                 });
